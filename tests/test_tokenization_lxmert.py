@@ -17,12 +17,14 @@
 import os
 import unittest
 
-from transformers.tokenization_bert import VOCAB_FILES_NAMES
-from transformers.tokenization_lxmert import LxmertTokenizer, LxmertTokenizerFast
+from transformers import LxmertTokenizer, LxmertTokenizerFast
+from transformers.models.bert.tokenization_bert import VOCAB_FILES_NAMES
+from transformers.testing_utils import require_tokenizers
 
 from .test_tokenization_common import TokenizerTesterMixin
 
 
+@require_tokenizers
 class LxmertTokenizationTest(TokenizerTesterMixin, unittest.TestCase):
 
     tokenizer_class = LxmertTokenizer

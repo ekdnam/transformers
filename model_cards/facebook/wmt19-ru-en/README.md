@@ -1,9 +1,7 @@
-
 ---
 language: 
 - ru
 - en
-thumbnail:
 tags:
 - translation
 - wmt19
@@ -13,6 +11,7 @@ datasets:
 - wmt19
 metrics:
 - bleu
+thumbnail: https://huggingface.co/front/thumbnails/facebook.png
 ---
 
 # FSMT
@@ -37,8 +36,7 @@ All four models are available:
 #### How to use
 
 ```python
-from transformers.tokenization_fsmt import FSMTTokenizer
-from transformers.modeling_fsmt import FSMTForConditionalGeneration
+from transformers import FSMTForConditionalGeneration, FSMTTokenizer
 mname = "facebook/wmt19-ru-en"
 tokenizer = FSMTTokenizer.from_pretrained(mname)
 model = FSMTForConditionalGeneration.from_pretrained(mname)

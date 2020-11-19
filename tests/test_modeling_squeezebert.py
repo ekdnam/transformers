@@ -17,7 +17,7 @@
 import unittest
 
 from transformers import is_torch_available
-from transformers.testing_utils import require_torch, slow, torch_device
+from transformers.testing_utils import require_sentencepiece, require_tokenizers, require_torch, slow, torch_device
 
 from .test_configuration_common import ConfigTester
 from .test_modeling_common import ModelTesterMixin, ids_tensor, random_attention_mask
@@ -131,7 +131,6 @@ if is_torch_available():
                 post_attention_groups=self.post_attention_groups,
                 intermediate_groups=self.intermediate_groups,
                 output_groups=self.output_groups,
-                return_dict=True,
             )
 
             return config, input_ids, input_mask, sequence_labels, token_labels, choice_labels
@@ -271,6 +270,9 @@ class SqueezeBertModelTest(ModelTesterMixin, unittest.TestCase):
             self.assertIsNotNone(model)
 
 
+@require_sentencepiece
+@require_tokenizers
+@require_torch
 class SqueezeBertModelIntegrationTest(unittest.TestCase):
     @slow
     def test_inference_classification_head(self):
